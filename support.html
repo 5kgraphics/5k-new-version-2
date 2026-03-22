@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Support Us - 5K Digital Assets</title>
+  <meta name="description" content="Support 5K Digital Assets - Help us keep our resources free">
+  <link rel="preconnect" href="https://fonts.googleapis.com/">
+  <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <!-- Flutterwave -->
+  <script src="https://checkout.flutterwave.com/v3.js"></script>
+  <style>
+    .support-hero {
+      background: linear-gradient(135deg, rgba(67, 97, 238, 0.1) 0%, rgba(114, 9, 183, 0.1) 100%);
+      padding: 80px 20px;
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    
+    .support-hero-icon {
+      width: 80px;
+      height: 80px;
+      margin: 0 auto 24px;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 10px 40px rgba(67, 97, 238, 0.3);
+    }
+    
+    .support-hero-icon svg {
+      width: 40px;
+      height: 40px;
+      color: white;
+    }
+    
+    .donation-card {
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+    }
+    
+    .donation-card-header {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      padding: 30px;
+      color: white;
+      text-align: center;
+    }
+    
+    .donation-card-header h2 {
+      font-size: 1.5rem;
+      margin-bottom: 8px;
+    }
+    
+    .donation-card-body {
+      padding: 32px;
+    }
+    
+    .currency-selector {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+    
+    .amount-input-wrapper {
+      position: relative;
+    }
+    
+    .currency-symbol {
+      position: absolute;
+      left: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--muted);
+    }
+    
+    .amount-input-wrapper input {
+      padding-left: 44px;
+      font-size: 1.5rem;
+      font-weight: 600;
+      text-align: center;
+    }
+    
+    .quick-amounts {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin-top: 16px;
+    }
+    
+    .quick-amount-btn {
+      padding: 12px;
+      background: var(--input-bg);
+      border: 2px solid var(--card-border);
+      border-radius: 10px;
+      font-weight: 600;
+      color: var(--foreground);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    
+    .quick-amount-btn:hover {
+      border-color: var(--primary);
+      background: var(--primary-light);
+    }
+    
+    .quick-amount-btn.active {
+      border-color: var(--primary);
+      background: var(--primary);
+      color: white;
+    }
+    
+    .donate-btn {
+      width: 100%;
+      padding: 18px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: white;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.3s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+    
+    .donate-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(67, 97, 238, 0.4);
+    }
+    
+    .donate-btn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+    }
+    
+    .security-badges {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      margin-top: 24px;
+      padding-top: 24px;
+      border-top: 1px solid var(--card-border);
+    }
+    
+    .security-badge {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+    
+    .security-badge svg {
+      color: var(--success);
+    }
+    
+    .currency-flag {
+      margin-right: 8px;
+    }
+    
+    @media (max-width: 640px) {
+      .currency-selector {
+        grid-template-columns: 1fr;
+      }
+      
+      .quick-amounts {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      
+      .security-badges {
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Loading Animation -->
+  <div id="loading-overlay" class="loading-overlay active">
+    <div id="loading-binary"></div>
+    <div id="loading-particles"></div>
+    <div class="loading-logo">
+      <div class="loading-logo-ring"></div>
+      <div class="loading-logo-ring-inner"></div>
+      <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#4361ee"/>
+            <stop offset="50%" style="stop-color:#7209b7"/>
+            <stop offset="100%" style="stop-color:#f72585"/>
+          </linearGradient>
+        </defs>
+        <circle cx="50" cy="50" r="45" stroke="url(#logoGradient)" stroke-width="4" fill="none"/>
+        <text x="50" y="58" text-anchor="middle" fill="url(#logoGradient)" font-size="24" font-weight="800">5K</text>
+      </svg>
+    </div>
+    <div class="loading-text">Loading<span class="loading-dots"><span></span><span></span><span></span></span></div>
+    <div class="loading-progress">
+      <div class="loading-progress-bar"></div>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="header-content">
+      <a href="index.html" class="logo">
+        <svg class="logo-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="navLogoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" style="stop-color:#4361ee"/>
+              <stop offset="100%" style="stop-color:#7209b7"/>
+            </linearGradient>
+          </defs>
+          <circle cx="20" cy="20" r="18" stroke="url(#navLogoGradient)" stroke-width="2" fill="none"/>
+          <text x="20" y="25" text-anchor="middle" fill="url(#navLogoGradient)" font-size="12" font-weight="800">5K</text>
+        </svg>
+        <span>5K Digital Assets</span>
+      </a>
+      
+      <nav class="nav">
+        <ul class="nav-links">
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="about.html" class="nav-link">About</a></li>
+          <li><a href="faq.html" class="nav-link">FAQ</a></li>
+          <li><a href="contact.html" class="nav-link">Contact</a></li>
+          <li><a href="support.html" class="nav-link active">Support Us</a></li>
+        </ul>
+        
+        <button class="theme-toggle" onclick="toggleTheme()">
+          <span class="theme-toggle-label">Light</span>
+          <div class="theme-toggle-switch"></div>
+        </button>
+        
+        <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="3" y1="12" x2="21" y2="12"/>
+            <line x1="3" y1="6" x2="21" y2="6"/>
+            <line x1="3" y1="18" x2="21" y2="18"/>
+          </svg>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Mobile Menu -->
+  <div id="mobile-menu-overlay" class="mobile-menu-overlay"></div>
+  <nav id="mobile-menu" class="mobile-menu">
+    <ul class="mobile-nav-links">
+      <li><a href="index.html" class="mobile-nav-link">Home</a></li>
+      <li><a href="about.html" class="mobile-nav-link">About</a></li>
+      <li><a href="faq.html" class="mobile-nav-link">FAQ</a></li>
+      <li><a href="contact.html" class="mobile-nav-link">Contact</a></li>
+      <li><a href="support.html" class="mobile-nav-link">Support Us</a></li>
+    </ul>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="main">
+    <!-- Hero Section -->
+    <div class="support-hero">
+      <div class="support-hero-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+        </svg>
+      </div>
+      <h1 class="hero-title" style="margin-bottom:12px;">Support Our Work</h1>
+      <p class="text-muted" style="max-width:500px;margin:0 auto;font-size:1.1rem;">Help us continue providing free digital assets to designers and developers worldwide</p>
+    </div>
+
+    <div class="container" style="max-width:600px;padding-bottom:60px;">
+      <!-- Donation Card -->
+      <div class="donation-card">
+        <div class="donation-card-header">
+          <h2>Make a Donation</h2>
+          <p style="opacity:0.9;">Every contribution helps us grow</p>
+        </div>
+        <div class="donation-card-body">
+          <!-- Customer Details -->
+          <div class="form-group">
+            <label class="form-label">Your Name</label>
+            <input type="text" id="customerName" class="form-input" placeholder="Enter your name">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Email Address</label>
+            <input type="email" id="customerEmail" class="form-input" placeholder="Enter your email">
+          </div>
+          
+          <!-- Currency Selection -->
+          <div class="form-group">
+            <label class="form-label">Select Currency</label>
+            <select id="currency-select" class="form-input" onchange="updateCurrency()">
+              <option value="USD">🇺🇸 USD - US Dollar</option>
+              <option value="NGN">🇳🇬 NGN - Nigerian Naira</option>
+              <option value="EUR">🇪🇺 EUR - Euro</option>
+              <option value="GBP">🇬🇧 GBP - British Pound</option>
+              <option value="GHS">🇬🇭 GHS - Ghanaian Cedi</option>
+              <option value="KES">🇰🇪 KES - Kenyan Shilling</option>
+              <option value="ZAR">🇿🇦 ZAR - South African Rand</option>
+              <option value="CAD">🇨🇦 CAD - Canadian Dollar</option>
+              <option value="AUD">🇦🇺 AUD - Australian Dollar</option>
+              <option value="AED">🇦🇪 AED - UAE Dirham</option>
+            </select>
+          </div>
+          
+          <!-- Amount Input -->
+          <div class="form-group">
+            <label class="form-label">Donation Amount</label>
+            <div class="amount-input-wrapper">
+              <span class="currency-symbol" id="currency-symbol">$</span>
+              <input type="number" id="donation-amount" class="form-input" placeholder="0.00" min="1" step="0.01" oninput="clearQuickAmounts()">
+            </div>
+            <!-- Quick Amount Buttons -->
+            <div class="quick-amounts" id="quick-amounts">
+              <button type="button" class="quick-amount-btn" onclick="setAmount(5)">5</button>
+              <button type="button" class="quick-amount-btn" onclick="setAmount(10)">10</button>
+              <button type="button" class="quick-amount-btn" onclick="setAmount(25)">25</button>
+              <button type="button" class="quick-amount-btn" onclick="setAmount(50)">50</button>
+              <button type="button" class="quick-amount-btn" onclick="setAmount(100)">100</button>
+              <button type="button" class="quick-amount-btn" onclick="setAmount(250)">250</button>
+              <button type="button" class="quick-amount-btn" onclick="setAmount(500)">500</button>
+              <button type="button" class="quick-amount-btn" onclick="setAmount(1000)">1000</button>
+            </div>
+          </div>
+          
+          <!-- Donate Button -->
+          <button class="donate-btn" id="donate-btn" onclick="handleDonation()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+            </svg>
+            Donate Now
+          </button>
+          
+          <!-- Security Badges -->
+          <div class="security-badges">
+            <div class="security-badge">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+              </svg>
+              Secure Payment
+            </div>
+            <div class="security-badge">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+              </svg>
+              SSL Encrypted
+            </div>
+            <div class="security-badge">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="20 6 9 17 4 12"/>
+              </svg>
+              Powered by Flutterwave
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Success Message -->
+      <div id="payment-success" class="card mt-4" style="display:none;background:rgba(16, 185, 129, 0.1);border-color:rgba(16, 185, 129, 0.3);">
+        <div class="card-content text-center">
+          <div style="font-size:3rem;margin-bottom:16px;">🎉</div>
+          <h3 class="font-semibold" style="color:var(--success);">Thank You!</h3>
+          <p class="text-muted">Your generous support means the world to us. Thank you for helping us keep our resources free for everyone!</p>
+        </div>
+      </div>
+
+      <!-- Why Support Section -->
+      <div class="card mt-4">
+        <div class="card-content">
+          <h3 class="font-semibold mb-3">Why Your Support Matters</h3>
+          <p style="line-height:1.8;color:var(--muted);">Your donation helps us maintain our servers, acquire new premium resources, and continue providing high-quality digital assets completely free to designers and developers around the world.</p>
+          <ul style="margin-top:16px;color:var(--muted);line-height:2;">
+            <li>✓ Keep all resources free forever</li>
+            <li>✓ Maintain fast and reliable downloads</li>
+            <li>✓ Add new premium assets regularly</li>
+            <li>✓ Support the creative community</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Back to Top Button -->
+  <button id="back-to-top" class="back-to-top">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <polyline points="18 15 12 9 6 15"/>
+    </svg>
+  </button>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <h4 class="footer-title">5K Digital Assets</h4>
+          <p class="text-muted">Free digital assets for designers and developers.</p>
+        </div>
+        <div>
+          <h4 class="footer-title">Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="index.html" class="footer-link">Home</a></li>
+            <li><a href="about.html" class="footer-link">About</a></li>
+            <li><a href="contact.html" class="footer-link">Contact</a></li>
+            <li><a href="faq.html" class="footer-link">FAQ</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer-title">Legal</h4>
+          <ul class="footer-links">
+            <li><a href="privacy.html" class="footer-link">Privacy Policy</a></li>
+            <li><a href="terms.html" class="footer-link">Terms of Service</a></li>
+            <li><a href="disclaimer.html" class="footer-link">Disclaimer</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer-title">Newsletter</h4>
+          <form onsubmit="handleNewsletterSubmit(event, 'footer')">
+            <div class="form-group" style="margin-bottom:0;">
+              <input type="email" class="form-input" placeholder="Your email" required>
+            </div>
+            <button type="submit" class="btn btn-primary" style="margin-top:12px;width:100%;">Subscribe</button>
+          </form>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 5K Digital Assets. All rights reserved.</p>
+        <p>Made with ❤️ for the creative community</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Cookie Consent -->
+  <div id="cookie-consent" class="cookie-consent">
+    <p class="text-sm">We use cookies to enhance your experience. By continuing to visit this site you agree to our use of cookies.</p>
+    <div class="cookie-consent-actions">
+      <button class="btn btn-outline btn-sm" onclick="declineCookies()">Decline</button>
+      <button class="btn btn-primary btn-sm" onclick="acceptCookies()">Accept</button>
+    </div>
+  </div>
+
+  <div id="toast-container" class="toast-container"></div>
+
+  <script src="js/app.js"></script>
+  <script>
+    // Currency data
+    const currencies = {
+      USD: { symbol: '$', name: 'US Dollar', rates: { 5:5, 10:10, 25:25, 50:50, 100:100, 250:250, 500:500, 1000:1000 } },
+      NGN: { symbol: '₦', name: 'Nigerian Naira', rates: { 5:2500, 10:5000, 25:12500, 50:25000, 100:50000, 250:125000, 500:250000, 1000:500000 } },
+      EUR: { symbol: '€', name: 'Euro', rates: { 5:5, 10:10, 25:25, 50:50, 100:100, 250:250, 500:500, 1000:1000 } },
+      GBP: { symbol: '£', name: 'British Pound', rates: { 5:5, 10:10, 25:25, 50:50, 100:100, 250:250, 500:500, 1000:1000 } },
+      GHS: { symbol: '₵', name: 'Ghanaian Cedi', rates: { 5:50, 10:100, 25:250, 50:500, 100:1000, 250:2500, 500:5000, 1000:10000 } },
+      KES: { symbol: 'KSh', name: 'Kenyan Shilling', rates: { 5:500, 10:1000, 25:2500, 50:5000, 100:10000, 250:25000, 500:50000, 1000:100000 } },
+      ZAR: { symbol: 'R', name: 'South African Rand', rates: { 5:100, 10:200, 25:500, 50:1000, 100:2000, 250:5000, 500:10000, 1000:20000 } },
+      CAD: { symbol: 'C$', name: 'Canadian Dollar', rates: { 5:5, 10:10, 25:25, 50:50, 100:100, 250:250, 500:500, 1000:1000 } },
+      AUD: { symbol: 'A$', name: 'Australian Dollar', rates: { 5:5, 10:10, 25:25, 50:50, 100:100, 250:250, 500:500, 1000:1000 } },
+      AED: { symbol: 'د.إ', name: 'UAE Dirham', rates: { 5:20, 10:40, 25:100, 50:200, 100:400, 250:1000, 500:2000, 1000:4000 } }
+    };
+    
+    let selectedCurrency = 'USD';
+    let selectedAmount = 0;
+    
+    // Check for payment success
+    if (new URLSearchParams(window.location.search).get('payment') === 'success') {
+      document.getElementById('payment-success').style.display = 'block';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+    
+    // Update currency symbol and quick amounts
+    function updateCurrency() {
+      selectedCurrency = document.getElementById('currency-select').value;
+      const currency = currencies[selectedCurrency];
+      
+      // Update symbol
+      document.getElementById('currency-symbol').textContent = currency.symbol;
+      
+      // Update quick amount buttons
+      const buttons = document.querySelectorAll('.quick-amount-btn');
+      const amounts = Object.values(currency.rates);
+      buttons.forEach((btn, index) => {
+        if (amounts[index]) {
+          btn.textContent = formatAmount(amounts[index], selectedCurrency);
+          btn.dataset.amount = amounts[index];
+        }
+      });
+      
+      // Clear input
+      document.getElementById('donation-amount').value = '';
+      clearQuickAmounts();
+    }
+    
+    function formatAmount(amount, currency) {
+      if (currency === 'NGN' || currency === 'KES' || currency === 'GHS') {
+        return amount >= 1000 ? (amount / 1000) + 'K' : amount;
+      }
+      return amount;
+    }
+    
+    function setAmount(amount) {
+      const currency = currencies[selectedCurrency];
+      selectedAmount = currency.rates[Object.keys(currency.rates).find(key => currency.rates[key] === amount)] || amount;
+      
+      document.getElementById('donation-amount').value = amount;
+      
+      // Highlight button
+      document.querySelectorAll('.quick-amount-btn').forEach(btn => {
+        btn.classList.remove('active');
+        if (parseInt(btn.dataset.amount) === amount || btn.textContent == formatAmount(amount, selectedCurrency)) {
+          btn.classList.add('active');
+        }
+      });
+    }
+    
+    function clearQuickAmounts() {
+      document.querySelectorAll('.quick-amount-btn').forEach(btn => {
+        btn.classList.remove('active');
+      });
+    }
+    
+    // Handle donation
+    function handleDonation() {
+      const name = document.getElementById('customerName').value.trim();
+      const email = document.getElementById('customerEmail').value.trim();
+      const amount = parseFloat(document.getElementById('donation-amount').value);
+      
+      // Validation
+      if (!name || name.length < 2) {
+        showToast('Name Required', 'Please enter your name', 'error');
+        document.getElementById('customerName').focus();
+        return;
+      }
+      
+      if (!email || !email.includes('@')) {
+        showToast('Email Required', 'Please enter a valid email address', 'error');
+        document.getElementById('customerEmail').focus();
+        return;
+      }
+      
+      if (!amount || amount < 1) {
+        showToast('Amount Required', 'Please enter a donation amount', 'error');
+        document.getElementById('donation-amount').focus();
+        return;
+      }
+      
+      // Check Flutterwave
+      if (typeof FlutterwaveCheckout === 'undefined') {
+        showToast('Payment Error', 'Payment system is loading. Please try again.', 'error');
+        return;
+      }
+      
+      // Disable button
+      const btn = document.getElementById('donate-btn');
+      btn.disabled = true;
+      btn.innerHTML = '<span class="loading-spinner"></span> Processing...';
+      
+      const txRef = '5k-donate-' + Date.now();
+      
+      FlutterwaveCheckout({
+        public_key: CONFIG.flutterwavePublicKey,
+        tx_ref: txRef,
+        amount: amount,
+        currency: selectedCurrency,
+        payment_options: 'card,usssd,qr,mpesa,googlepay,applepay',
+        customer: {
+          email: email,
+          name: name
+        },
+        customizations: {
+          title: '5K Digital Assets',
+          description: 'Support Donation',
+          logo: window.location.origin + '/images/logo.png'
+        },
+        callback: function(response) {
+          if (response.status === 'successful') {
+            window.location.href = 'support.html?payment=success';
+          }
+        },
+        onclose: function() {
+          btn.disabled = false;
+          btn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg> Donate Now';
+        }
+      });
+    }
+    
+    // Initialize
+    updateCurrency();
+  </script>
+</body>
+</html>

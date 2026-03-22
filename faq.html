@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Mirrored from 5kdigitalassets.com/faq by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 21 Mar 2026 02:04:52 GMT -->
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FAQ - 5K Digital Assets</title>
+  <meta name="description" content="Frequently asked questions about 5K Digital Assets">
+  <link rel="preconnect" href="https://fonts.googleapis.com/">
+  <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- Loading Animation -->
+  <div id="loading-overlay" class="loading-overlay active">
+    <div id="loading-binary"></div>
+    <div id="loading-particles"></div>
+    <div class="loading-logo">
+      <div class="loading-logo-ring"></div>
+      <div class="loading-logo-ring-inner"></div>
+      <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#4361ee"/>
+            <stop offset="50%" style="stop-color:#7209b7"/>
+            <stop offset="100%" style="stop-color:#f72585"/>
+          </linearGradient>
+        </defs>
+        <circle cx="50" cy="50" r="45" stroke="url(#logoGradient)" stroke-width="4" fill="none"/>
+        <text x="50" y="58" text-anchor="middle" fill="url(#logoGradient)" font-size="24" font-weight="800">5K</text>
+        <path d="M30 70 Q50 85 70 70" stroke="url(#logoGradient)" stroke-width="3" fill="none"/>
+      </svg>
+    </div>
+    <div class="loading-text">Loading<span class="loading-dots"><span></span><span></span><span></span></span></div>
+    <div class="loading-progress">
+      <div class="loading-progress-bar"></div>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="header-content">
+      <a href="index.html" class="logo">
+        <svg class="logo-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="navLogoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" style="stop-color:#4361ee"/>
+              <stop offset="100%" style="stop-color:#7209b7"/>
+            </linearGradient>
+          </defs>
+          <circle cx="20" cy="20" r="18" stroke="url(#navLogoGradient)" stroke-width="2" fill="none"/>
+          <text x="20" y="25" text-anchor="middle" fill="url(#navLogoGradient)" font-size="12" font-weight="800">5K</text>
+        </svg>
+        <span>5K Digital Assets</span>
+      </a>
+      
+      <nav class="nav">
+        <ul class="nav-links">
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="about.html" class="nav-link">About</a></li>
+          <li><a href="faq.html" class="nav-link active">FAQ</a></li>
+          <li><a href="contact.html" class="nav-link">Contact</a></li>
+          <li><a href="support.html" class="nav-link">Support Us</a></li>
+        </ul>
+        
+        <button class="theme-toggle" onclick="toggleTheme()">
+          <span class="theme-toggle-label">Light</span>
+          <div class="theme-toggle-switch"></div>
+        </button>
+        
+        <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="3" y1="12" x2="21" y2="12"/>
+            <line x1="3" y1="6" x2="21" y2="6"/>
+            <line x1="3" y1="18" x2="21" y2="18"/>
+          </svg>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Mobile Menu -->
+  <div id="mobile-menu-overlay" class="mobile-menu-overlay"></div>
+  <nav id="mobile-menu" class="mobile-menu">
+    <ul class="mobile-nav-links">
+      <li><a href="index.html" class="mobile-nav-link">Home</a></li>
+      <li><a href="about.html" class="mobile-nav-link">About</a></li>
+      <li><a href="faq.html" class="mobile-nav-link">FAQ</a></li>
+      <li><a href="contact.html" class="mobile-nav-link">Contact</a></li>
+      <li><a href="support.html" class="mobile-nav-link">Support Us</a></li>
+    </ul>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="main">
+    <section class="faq-section">
+      <div class="container">
+        <h1 class="hero-title text-center mb-4">Frequently Asked Questions</h1>
+        <p class="text-muted text-center mb-4" style="max-width:600px;margin:0 auto 40px;">Find answers to common questions about our digital assets and services.</p>
+
+        <div style="max-width:800px;margin:0 auto;">
+          <!-- FAQ Item 1 -->
+          <div class="faq-item">
+            <button class="faq-trigger" data-accordion="1" onclick="toggleAccordion(1)">
+              <span>What are digital assets?</span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="6 9 12 15 18 9"/>
+              </svg>
+            </button>
+            <div id="accordion-content-1" class="faq-content">
+              <p class="faq-answer">Digital assets are electronic resources that have value and can be owned, stored, and transferred electronically. In our context, they include UI kits, templates, fonts, presets, brushes, textures, e-books, courses, audio files, and videos that designers and developers can use in their projects.</p>
+            </div>
+          </div>
+
+          <!-- FAQ Item 2 -->
+          <div class="faq-item">
+            <button class="faq-trigger" data-accordion="2" onclick="toggleAccordion(2)">
+              <span>Are the downloads really free?</span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="6 9 12 15 18 9"/>
+              </svg>
+            </button>
+            <div id="accordion-content-2" class="faq-content">
+              <p class="faq-answer">Yes! All digital assets on our platform are completely free to download. We believe in supporting the creative community by providing high-quality resources at no cost. We monetize through non-intrusive ads and optional donations from supporters who find our resources valuable.</p>
+            </div>
+          </div>
+
+          <!-- FAQ Item 3 -->
+          <div class="faq-item">
+            <button class="faq-trigger" data-accordion="3" onclick="toggleAccordion(3)">
+              <span>How do I download an asset?</span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="6 9 12 15 18 9"/>
+              </svg>
+            </button>
+            <div id="accordion-content-3" class="faq-content">
+              <p class="faq-answer">Simply browse our collection, click on any asset you're interested in, and click the "Download Now" button. You may need to wait for a short timer (which helps support our free service) before the download begins. The asset will be downloaded directly to your device.</p>
+            </div>
+          </div>
+
+          <!-- FAQ Item 4 -->
+          <div class="faq-item">
+            <button class="faq-trigger" data-accordion="4" onclick="toggleAccordion(4)">
+              <span>Can I use these assets in commercial projects?</span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="6 9 12 15 18 9"/>
+              </svg>
+            </button>
+            <div id="accordion-content-4" class="faq-content">
+              <p class="faq-answer">License terms may vary for each asset. Most of our assets are available for both personal and commercial use, but we recommend checking the specific license included with each download. If you're unsure, you can always contact us for clarification.</p>
+            </div>
+          </div>
+
+          <!-- FAQ Item 5 -->
+          <div class="faq-item">
+            <button class="faq-trigger" data-accordion="5" onclick="toggleAccordion(5)">
+              <span>Why is there a timer before downloading?</span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="6 9 12 15 18 9"/>
+              </svg>
+            </button>
+            <div id="accordion-content-5" class="faq-content">
+              <p class="faq-answer">The short timer allows us to display advertisements, which helps us keep all our digital assets free for everyone. This minimal wait time enables us to maintain and grow our collection while providing high-quality resources at no cost to you.</p>
+            </div>
+          </div>
+
+          <!-- FAQ Item 6 -->
+          <div class="faq-item">
+            <button class="faq-trigger" data-accordion="6" onclick="toggleAccordion(6)">
+              <span>How can I support 5K Digital Assets?</span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="6 9 12 15 18 9"/>
+              </svg>
+            </button>
+            <div id="accordion-content-6" class="faq-content">
+              <p class="faq-answer">You can support us by making a donation through our Support page, sharing our website with others, subscribing to our newsletter, or simply using and enjoying our free resources. Every bit helps us continue providing quality digital assets to the creative community!</p>
+            </div>
+          </div>
+
+          <!-- FAQ Item 7 -->
+          <div class="faq-item">
+            <button class="faq-trigger" data-accordion="7" onclick="toggleAccordion(7)">
+              <span>Do I need to create an account?</span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="6 9 12 15 18 9"/>
+              </svg>
+            </button>
+            <div id="accordion-content-7" class="faq-content">
+              <p class="faq-answer">No account is required to browse and download assets. We believe in making the process as simple as possible. However, you can subscribe to our newsletter to receive updates about new assets and features.</p>
+            </div>
+          </div>
+
+          <!-- FAQ Item 8 -->
+          <div class="faq-item">
+            <button class="faq-trigger" data-accordion="8" onclick="toggleAccordion(8)">
+              <span>How often do you add new assets?</span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="6 9 12 15 18 9"/>
+              </svg>
+            </button>
+            <div id="accordion-content-8" class="faq-content">
+              <p class="faq-answer">We regularly update our collection with new digital assets. Subscribe to our newsletter to get notified when new resources are added. We aim to provide fresh, relevant content for designers and developers on a consistent basis.</p>
+            </div>
+          </div>
+
+          <!-- FAQ Item 9 -->
+          <div class="faq-item">
+            <button class="faq-trigger" data-accordion="9" onclick="toggleAccordion(9)">
+              <span>What file formats are available?</span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="6 9 12 15 18 9"/>
+              </svg>
+            </button>
+            <div id="accordion-content-9" class="faq-content">
+              <p class="faq-answer">File formats vary depending on the asset type. UI kits may include Figma, Sketch, or PSD files. Templates come in various formats like HTML, React, or WordPress. Fonts are typically in OTF, TTF, or WOFF formats. Each asset page shows the available formats and file sizes.</p>
+            </div>
+          </div>
+
+          <!-- FAQ Item 10 -->
+          <div class="faq-item">
+            <button class="faq-trigger" data-accordion="10" onclick="toggleAccordion(10)">
+              <span>How can I contact you for support?</span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="6 9 12 15 18 9"/>
+              </svg>
+            </button>
+            <div id="accordion-content-10" class="faq-content">
+              <p class="faq-answer">You can reach us through our Contact page or use the live chat widget in the bottom right corner of the site. We typically respond within 24-48 hours. For urgent matters, please mention it in your message subject line.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Back to Top Button -->
+  <button id="back-to-top" class="back-to-top">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <polyline points="18 15 12 9 6 15"/>
+    </svg>
+  </button>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <h4 class="footer-title">5K Digital Assets</h4>
+          <p class="text-muted">Free digital assets for designers and developers.</p>
+        </div>
+        <div>
+          <h4 class="footer-title">Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="index.html" class="footer-link">Home</a></li>
+            <li><a href="about.html" class="footer-link">About</a></li>
+            <li><a href="contact.html" class="footer-link">Contact</a></li>
+            <li><a href="faq.html" class="footer-link">FAQ</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer-title">Legal</h4>
+          <ul class="footer-links">
+            <li><a href="privacy.html" class="footer-link">Privacy Policy</a></li>
+            <li><a href="terms.html" class="footer-link">Terms of Service</a></li>
+            <li><a href="disclaimer.html" class="footer-link">Disclaimer</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer-title">Newsletter</h4>
+          <form onsubmit="handleNewsletterSubmit(event, 'footer')">
+            <div class="form-group" style="margin-bottom:0;">
+              <input type="email" class="form-input" placeholder="Your email" required>
+            </div>
+            <button type="submit" class="btn btn-primary" style="margin-top:12px;width:100%;">Subscribe</button>
+          </form>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 5K Digital Assets. All rights reserved.</p>
+        <p>Made with ❤️ for the creative community</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Cookie Consent -->
+  <div id="cookie-consent" class="cookie-consent">
+    <p class="text-sm">We use cookies to enhance your experience. By continuing to visit this site you agree to our use of cookies.</p>
+    <div class="cookie-consent-actions">
+      <button class="btn btn-outline btn-sm" onclick="declineCookies()">Decline</button>
+      <button class="btn btn-primary btn-sm" onclick="acceptCookies()">Accept</button>
+    </div>
+  </div>
+
+  <script src="js/app.js"></script>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js/v8c78df7c7c0f484497ecbca7046644da1771523124516" integrity="sha512-8DS7rgIrAmghBFwoOTujcf6D9rXvH8xm8JQ1Ja01h9QX8EzXldiszufYa4IFfKdLUKTTrnSFXLDkUEOTrZQ8Qg==" data-cf-beacon='{"version":"2024.11.0","token":"76b21abe25cf49a8b67c3860e0529098","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
+</body>
+
+<!-- Mirrored from 5kdigitalassets.com/faq by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 21 Mar 2026 02:04:54 GMT -->
+</html>
